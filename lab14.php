@@ -40,5 +40,46 @@ class BlogPage extends Page
     }
 }
 
-$blog = new BlogPage();
-$blog->render();
+$pageParam = $_GET['page'] ?? null;
+$content = null;
+
+if ($pageParam === 'page') {
+    $defaultTemplate = '<div><p>It is a default page</p></div>';
+    $page = new Page('page', $defaultTemplate);
+    ob_start();
+    $page->render();
+    $content = ob_get_clean();
+} elseif ($pageParam === 'blog') {
+    $blog = new BlogPage();
+    ob_start();
+    $blog->render();
+    $content = ob_get_clean();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная 14</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .nav { margin-bottom: 20px; }
+        .nav a { margin-right: 15px; padding: 5px 10px; background: #007bff; color: white; text-decoration: none;}
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="?page=page">Обычная страница</a>
+        <a href="?page=blog">Блог с карточками</a>
+    </div>
+    <hr>
+    <?php
+    if ($content !== null) {
+        echo $content;
+    } else {
+        echo "<p>Добро пожаловать! Выберите одну из страниц по ссылкам выше.</p>";
+    }
+    ?>
+</body>
+</html>
