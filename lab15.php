@@ -54,6 +54,28 @@ class Rectangle extends Figure
     }
 }
 
+class Square extends Figure
+{
+    private float $a;
+
+    public function __construct(string $color, float $a)
+    {
+        parent::__construct($color, 4);
+        $this->a = $a;
+    }
+
+    public function getArea(): float
+    {
+        $this->area = $this->a * $this->a;
+        return $this->area;
+    }
+
+    public function infoAbout(): string
+    {
+        return "Это класс квадрата. У него {$this->sidesCount} стороны.";
+    }
+}
+
 
 
 ?>
