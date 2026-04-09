@@ -104,4 +104,22 @@ class Triangle extends Figure
     }
 }
 
+$rect1 = new Rectangle("красный", 5, 10);
+$rect2 = new Rectangle("синий", 3.5, 7.2);
+
+$square1 = new Square("зелёный", 4);
+$square2 = new Square("жёлтый", 6.5);
+
+$tri1 = new Triangle("оранжевый", 3, 4, 5);
+$tri2 = new Triangle("фиолетовый", 5, 6, 7);
+
+$figures = [$rect1, $rect2, $square1, $square2, $tri1, $tri2];
+
+echo "<h1>Лабораторная работа №15</h1>";
+foreach ($figures as $fig) {
+    echo "<p><strong>{$fig->infoAbout()}</strong><br>";
+    echo "Цвет: {$fig->getColor()}<br>";
+    echo "Площадь: " . number_format($fig->getArea(), 2) . " кв. ед.</p>";
+}
+
 ?>
